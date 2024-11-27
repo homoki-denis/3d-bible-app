@@ -1,10 +1,23 @@
+import { Loader } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
+import { Suspense } from "react";
+
+import Experience from "./components/Experience/Experience";
+import { UI } from "./components/UI/Ui";
 
 function App() {
   return (
-    <div className="w-screen h-screen">
-      <Canvas className="bg-blue-700"></Canvas>
-    </div>
+    <>
+      <UI />
+      <Loader />
+      <Canvas shadows camera={{ position: [-0.5, 1, 4], fov: 45 }}>
+        <group position-y={0}>
+          <Suspense fallback={null}>
+            <Experience />
+          </Suspense>
+        </group>
+      </Canvas>
+    </>
   );
 }
 
